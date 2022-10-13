@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+    <head th:replace="layout/plantilla :: head">
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantillaOrdTra :: headerOrdenTrabajo"></header>
+        <br/>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="col-md-3">
+                        <a th:href="@{/listaOrdTra}" class="btn btn-info btn-block">
+                            <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
+                        </a>
+                    </div>
+                    <br/>
+                    <div class="col-md-12">
+                        <p>Recuerde: Para poder crear una orden de trabajo, previamente debe crear Clientes y Materia Prima</p>
+                    </div>
+                    <br/>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>[[#{accion.guardar-ordenTrabajo}]]</h4>
+                        </div>
+                        <div class="card-body">
+                            <form th:action="@{/guardarOrdTra}" th:object="${ordenTrabajo}" method="post" class="was-validated">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="clienteFk" th:text="#{ordenTrabajo.cliente}">Cliente</label>
+                                        <br/>
+                                        <select th:field="*{clienteFk}" name="clienteFk"  class="custom-select form-control">
+                                            <option 
+                                                th:each="cliente:${lstClientes}"
+                                                th:value="${cliente.idCliente}"
+                                                th:text="${cliente.nombre}"
+                                                />
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="materiaPrimaFk" th:text="#{ordenTrabajo.materiaPrima}">Materia Prima</label>
+                                        <br/>
+                                        <select th:field="*{materiaPrimaFk}" name="materiaPrimaFk"  class="custom-select form-control">
+                                            <option 
+                                                th:each="matPri:${listaMatPri}"
+                                                th:value="${matPri.idMateriaPrima}"
+                                                th:text="${matPri.nombre}"
+                                                />
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cantidadMatPri" th:text="#{ordenTrabajo.cantidad-materiaPrima}">Cantidad Materia Prima</label>
+                                        <input type="number" th:field="*{cantidadMatPri}" class="form-control" name="cantidadMatPri" required="true"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="valorMatPri" th:text="#{ordenTrabajo.valor-materiaPrima}">Valor Materia Prima</label>
+                                        <input type="number" th:field="*{valorMatPri}" class="form-control" name="valorMatPri" required="true"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fechaEntrada" th:text="#{ordenTrabajo.fechaIngreso}">Fecha Ingreso</label>
+                                        <input type="date" th:field="*{fechaEntrada}" class="form-control" name="fechaEntrada"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="descripcion" th:text="#{ordenTrabajo.descripcion}">Descripcion</label>
+                                        <input type="text" th:field="*{descripcion}" class="form-control" id="descripcion"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="valorManoObra" th:text="#{ordenTrabajo.valor-manoObra}">Valor Mano Obra</label>
+                                        <input type="number" th:field="*{valorManoObra}" class="form-control" name="valorManoObra"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="horasHombre" th:text="#{ordenTrabajo.horasHombre}">Horas Hombre</label>
+                                        <input type="text" th:field="*{horasHombre}" class="form-control" name="horasHombre"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="valorAnticipo" th:text="#{ordenTrabajo.valor-anticipo}">Valor Anticipo</label>
+                                        <input type="number" th:field="*{valorAnticipo}" class="form-control" name="valorAnticipo"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fechaEntrega" th:text="#{ordenTrabajo.fechaEntrega}">Fecha Entraga</label>
+                                        <input type="date" th:field="*{fechaEntrega}" class="form-control" name="fechaEntrega"/>
+                                    </div>
+                                    <br/>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary btn-sm">Guardar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer">
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer th:replace="layout/plantillaOrdTra :: footerOrdenTrabajo"></footer>
+    </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+    <head>
+        <title>Listado Empleados</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <section th:fragment="listadoEmpleados" id="clientes">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{titulo.lista-empleados}]]</h4>
+                            </div>
+                            <div th:if="${AllEmpleado != null and !AllEmpleado.empty}">
+                                <table class="table table-striped" border="1">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th scope="col" th:text="#{empleado.tipo-identificacion}">Tipo Identificación</th>
+                                            <th scope="col" th:text="#{empleado.identificacion}">Identificacion</th>
+                                            <th scope="col" th:text="#{empleado.nombre}">Nombre</th>
+                                            <th scope="col" th:text="#{empleado.cargo}">Cargo</th>
+                                            <th scope="col" th:text="#{empleado.categoria}">Categoria</th>
+                                            <th scope="col" th:text="#{empleado.email}">Email</th>
+                                            <th sec:authorize="hasRole('ROLE_ADMIN')">[[#{accion.editar}]]</th>
+                                            <th sec:authorize="hasRole('ROLE_ADMIN')">[[#{accion.eliminar}]]</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="AllEmpleado, contador : ${AllEmpleado}">
+                                            <td>[[${contador.count}]]</td>
+                                            <td>[[${AllEmpleado.tipoIdentificacion}]]</td>
+                                            <td>[[${AllEmpleado.identificacion}]]</td>
+                                            <td>[[${AllEmpleado.nombre} + ' ' + ${AllEmpleado.apellido}]]</td>
+                                            <td>[[${AllEmpleado.cargo}]]</td>
+                                            <td>[[${AllEmpleado.categoria}]]</td>
+                                            <td>[[${AllEmpleado.email}]]</td>
+                                            <td>
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/editarEmp/} + ${AllEmpleado.idEmpleado}" class="btn btn-secondary">
+                                                    <i class="fas fa-angle-double-right"></i> [[#{accion.editar}]]
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/eliminarEmp(idEmpleado = ${AllEmpleado.idEmpleado})}" class="btn btn-dark">
+                                                    <i class="fas fa-angle-double-right"></i> [[#{accion.eliminar}]]
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${AllEmpleado == null or AllEmpleado.empty}">
+                                <span th:text="#{empleado.lista-vacia}">
+                                    Lista Vacía
+                                </span>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

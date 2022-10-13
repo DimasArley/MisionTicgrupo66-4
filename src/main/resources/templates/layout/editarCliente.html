@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Editar Cliente</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <section th:fragment="editarCliente">
+            <form th:action="@{/guardarCli}" th:object="${cliente}" method="post" class="was-validated">
+                <input type="hidden" name="idCliente" th:field="*{idCliente}"/>
+                <section th:replace="layout/botonesEditar :: botonesEditarCli"></section>
+                <div id="details">
+                    <div class="container">
+                        <div class="row">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>[[#{accion.editar}]]</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="tipoIdentificacion">[[#{cliente.tipo-identificacion}]]</label>
+                                        <input type="text" class="form-control" name="tipoIdentificacion" required="true" th:field="*{tipoIdentificacion}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="identificacion">[[#{cliente.identificacion}]]</label>
+                                        <input type="text" class="form-control" name="identificacion" required="true" th:field="*{identificacion}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nombre">[[#{cliente.nombre}]]</label>
+                                        <input type="text" class="form-control" name="nombre" required="true" th:field="*{nombre}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="apellido">[[#{cliente.apellido}]]</label>
+                                        <input type="text" class="form-control" name="apellido" required="true" th:field="*{apellido}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="celular">[[#{cliente.celular}]]</label>
+                                        <input type="text" class="form-control" name="celular" required="true" th:field="*{celular}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="telefono">[[#{cliente.telefono}]]</label>
+                                        <input type="tel" class="form-control" name="telefono" required="true" th:field="*{telefono}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="direccion">[[#{cliente.direccion}]]</label>
+                                        <input type="text" class="form-control" name="direccion" required="true" th:field="*{direccion}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ciudad">[[#{cliente.ciudad}]]</label>
+                                        <input type="text" class="form-control" name="ciudad" required="true" th:field="*{ciudad}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="departamento">[[#{cliente.departamento}]]</label>
+                                        <input type="text" class="form-control" name="departamento" required="true" th:field="*{departamento}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="organizacion">[[#{cliente.organizacion}]]</label>
+                                        <input type="text" class="form-control" name="organizacion" required="true" th:field="*{organizacion}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="categoria">[[#{cliente.categoria}]]</label>
+                                        <input type="text" class="form-control" name="categoria" required="true" th:field="*{categoria}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="descripcion">[[#{cliente.descripcion}]]</label>
+                                        <input type="text" class="form-control" name="descripcion" required="true" th:field="*{descripcion}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </body>
+</html>

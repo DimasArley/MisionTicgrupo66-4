@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8"/>
+    </head>
+        <body>
+        <header th:replace="layout/plantillaMateriaPrima :: headerMatPri"></header>
+        <br/>
+        <section th:replace="layout/listadoMateriaPrima :: listadoMateriaPrima"></section>
+        <br/>
+        <section th:replace="layout/botonesAgregar :: botonesAgregarMatPri"></section>
+        <section th:replace="layout/agregarMateriaPrima :: agregarMateriaPrima"></section>
+        <footer th:replace="layout/plantillaMateriaPrima :: footerMatPri"></footer>
+        <br/>
+    </body>
+</html>

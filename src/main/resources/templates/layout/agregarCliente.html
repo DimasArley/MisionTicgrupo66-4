@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+    <head th:replace="layout/plantilla :: head">
+        <title>Agregar Cliente</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <section th:fragment="agregarCliente">
+            <div id="agregarCliente" class="modal fade">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title" th:text="#{accion.guardar-cliente}">Agregar Empleado</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                
+                            </button>
+
+                        </div>
+                        <form th:action="@{/guardarCli}" th:object="${cliente}" method="post" class="was-validated">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="tipoIdentificacion" th:text="#{cliente.tipo-identificacion}">Tipo Documento</label>
+                                    <input type="text" class="form-control" name="tipoIdentificacion" required="true"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="identificacion" th:text="#{cliente.identificacion}">Identificación</label>
+                                    <input type="text" class="form-control" name="identificacion" required="true"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nombre" th:text="#{cliente.nombre}">Nombre</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="apellido" th:text="#{cliente.apellido}">Apellido</label>
+                                    <input type="text" class="form-control" name="apellido" required="true"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="celular" th:text="#{cliente.celular}">Celular</label>
+                                    <input type="text" class="form-control" name="celular"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono" th:text="#{cliente.telefono}">Telefono</label>
+                                    <input type="tel" class="form-control" name="cargo"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="direccion" th:text="#{cliente.direccion}">Dirección</label>
+                                    <input type="text" class="form-control" name="direccion"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ciudad" th:text="#{cliente.ciudad}">Ciudad</label>
+                                    <input type="text" class="form-control" name="ciudad"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="departamento" th:text="#{cliente.departamento}">Departamento</label>
+                                    <input type="text" class="form-control" name="departamento"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="organizacion" th:text="#{cliente.organizacion}">Organizacion</label>
+                                    <input type="text" class="form-control" name="organizacion"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="categoria" th:text="#{cliente.categoria}">Categoria</label>
+                                    <input type="text" class="form-control" name="categoria"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="descripcion" th:text="#{cliente.descripcion}">Descripcion</label>
+                                    <input type="text" class="form-control" name="descripcion"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit" th:text="#{accion.guardar-cliente}">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </body>
+</html>

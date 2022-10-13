@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <section th:fragment="editarMatPri">
+            <form th:action="@{/guardarMatPri}" th:object="${materiaPrima}" method="post" class="was-validated">
+                <input type="hidden" name="idMateriaPrima" th:field="*{idMateriaPrima}"/>
+                <section th:replace="layout/botonesEditar :: botonesEditarMatPri"></section>
+                <div id="details">
+                    <div class="container">
+                        <div class="row">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>[[#{accion.editar}]]</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="nombre">[[#{materiaPrima.nombre}]]</label>
+                                        <input type="text" class="form-control" name="nombre" required="true" th:field="*{nombre}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="valor">[[#{materiaPrima.valor}]]</label>
+                                        <input type="number" class="form-control" name="valor" required="true" th:field="*{valor}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="unidadMedida">[[#{materiaPrima.medida}]]</label>
+                                        <input type="text" class="form-control" name="unidadMedida" required="true" th:field="*{unidadMedida}"/>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+    <head th:replace="layout/plantilla :: head">
+        <title>Agregar Empleado</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <section th:fragment="agregarEmpleado">
+            <div id="agregarEmpleado" class="modal fade">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title" th:text="#{accion.guardar-empleado}">Agregar Empleado</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                
+                            </button>
+
+                        </div>
+                        <form th:action="@{/guardarEmp}" th:object="${empleado}" method="post" class="was-validated">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="tipoIdentificacion" th:text="#{empleado.tipo-identificacion}">Tipo Documento</label>
+                                    <input type="text" class="form-control" name="tipoIdentificacion" required="true"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="identificacion" th:text="#{empleado.identificacion}">Identificación</label>
+                                    <input type="text" class="form-control" name="identificacion" required="true"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nombre" th:text="#{empleado.nombre}">Nombre</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="apellido" th:text="#{empleado.apellido}">Apellido</label>
+                                    <input type="text" class="form-control" name="apellido" required="true"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="descripcionEmpleado" th:text="#{empleado.descripcion}">Descripción Empleado</label>
+                                    <input type="text" class="form-control" name="descripcionEmpleado"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cargo" th:text="#{empleado.cargo}">Cargo</label>
+                                    <input type="text" class="form-control" name="cargo"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="categoria" th:text="#{empleado.categoria}">Categoria</label>
+                                    <input type="number" class="form-control" name="categoria"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" th:text="#{empleado.email}">E-mail</label>
+                                    <input type="email" class="form-control" name="email"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono" th:text="#{empleado.telefono}">Telefono</label>
+                                    <input type="tel" class="form-control" name="telefono"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit" th:text="#{accion.guardar-empleado}">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </body>
+</html>

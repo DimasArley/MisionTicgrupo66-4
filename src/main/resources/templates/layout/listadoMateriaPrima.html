@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+    <head>
+        <title>Listado Materia Prima</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <section th:fragment="listadoMateriaPrima" id="materiaPrima">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{titulo.lista-materiaPrima}]]</h4>
+                            </div>
+                            <div th:if="${allMateriaPrima != null and !allMateriaPrima.empty}">
+                                <table class="table table-striped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th scope="col" th:text="#{materiaPrima.nombre}">Nombre</th>
+                                            <th scope="col" th:text="#{materiaPrima.valor}">Valor</th>
+                                            <th scope="col" th:text="#{materiaPrima.medida}">Unidad Medida</th>
+                                            <th scope="col" th:text="#{materiaPrima.fechaCrea}">Fecha Creación</th>
+                                            <th scope="col" th:text="#{materiaPrima.userCrea}">Creado Por</th>
+                                            <th sec:authorize="hasRole('ROLE_ADMIN')">[[#{accion.editar}]]</th>
+                                            <th sec:authorize="hasRole('ROLE_ADMIN')">[[#{accion.eliminar}]]</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="allMateriaPrima, contador : ${allMateriaPrima}">
+                                            <td>[[${contador.count}]]</td>
+                                            <td>[[${allMateriaPrima.nombre}]]</td>
+                                            <td>[[${allMateriaPrima.valor}]]</td>
+                                            <td>[[${allMateriaPrima.unidadMedida}]]</td>
+                                            <td>[[${allMateriaPrima.fechaCrea}]]</td>
+                                            <td>[[${allMateriaPrima.userCrea}]]</td>
+                                            <td>
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/editarMatPri/} + ${allMateriaPrima.idMateriaPrima}" class="btn btn-secondary">
+                                                    <i class="fas fa-angle-double-right"></i> [[#{accion.editar}]]
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/eliminarMatPri(idMateriaPrima = ${allMateriaPrima.idMateriaPrima})}" class="btn btn-dark">
+                                                    <i class="fas fa-angle-double-right"></i> [[#{accion.eliminar}]]
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${allMateriaPrima == null or allMateriaPrima.empty}">
+                                <span th:text="#{materiaPrima.lista-vacia}">
+                                    Lista Vacía
+                                </span>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
